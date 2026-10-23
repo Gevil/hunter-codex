@@ -152,6 +152,8 @@ function renderOverview(){const s=$('#overview');s.innerHTML='';const main=E.fil
  for(const [ctx,lab] of Object.entries({weave_hawk:'Melee weave + Hawk',turret_hawk:'Turret + Hawk (no weaving)',melee:'Melee (dual wield)'})){const e=bestOf(x=>x.tier=='pre_launch'&&x.ctx==ctx);if(e)g.append(card(e,lab))}
  s.append(g);s.append(h('h2',null,'Best spec per tree'));g=h('div','grid');
  for(const t of ['SV','MM','BM']){const e=bestOf(x=>x.spec.tree==t);if(e)g.append(card(e,{SV:'Survival',MM:'Marksmanship',BM:'Beast Mastery'}[t]+' - top build'))}
+ s.append(g);s.append(h('h2',null,'Best spec per tree - no weaving (stay at range)'));g=h('div','grid');
+ for(const t of ['SV','MM','BM']){const e=bestOf(x=>x.spec.tree==t&&(x.ctx=='turret'||x.ctx=='turret_hawk'));if(e)g.append(card(e,{SV:'Survival',MM:'Marksmanship',BM:'Beast Mastery'}[t]+' - ranged only'))}
  s.append(g);s.append(h('h2',null,'Playstyle at a glance'));const f=h('div','frame scroll');const tb=h('table','lb');
  tb.innerHTML='<thead><tr><th>Playstyle</th><th>Best build</th><th>Spec</th><th class="num">DPS</th><th style="width:30%"></th></tr></thead>';const bd=h('tbody');
  const mx=Math.max(...main.map(e=>e.dps));
